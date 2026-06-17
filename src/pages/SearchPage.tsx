@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import MovieCard from './MovieCard';
-import type { Movie, SearchResponse } from './types';
-import type { OutletContext } from './App';
+import MovieCard from '../components/MovieCard';
+import type { Movie, SearchResponse } from '../types';
+import type { OutletContext } from '../App';
 
 const TMDB_TOKEN = import.meta.env.VITE_TMDB_TOKEN;
 

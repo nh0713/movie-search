@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route, NavLink, Outlet } from 'react-router-dom';
-import SearchPage from './SearchPage';
-import OwnedPage from './OwnedPage';
+import SearchPage from './pages/SearchPage';
+import OwnedPage from './pages/OwnedPage';
 import type { Movie } from './types';
 
 export interface OutletContext {

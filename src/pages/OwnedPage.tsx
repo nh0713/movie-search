@@ -1,6 +1,6 @@
 import { useOutletContext } from 'react-router-dom';
-import MovieCard from './MovieCard';
-import type { OutletContext } from './App';
+import MovieCard from '../components/MovieCard';
+import type { OutletContext } from '../App';
 
 export default function OwnedPage() {
   const { owned, toggleOwned } = useOutletContext<OutletContext>();
