@@ -4,8 +4,8 @@ A React app for searching movies and tracking your collection, built with Vite, 
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) v18 or higher
-- A free [TMDB API](https://www.themoviedb.org/settings/api) account to get an access token
+- [Node.js](https://nodejs.org/) v18 or higher (use `nvm use` if you have [nvm](https://github.com/nvm-sh/nvm) installed — a `.nvmrc` is included)
+- A free [TMDB account](https://www.themoviedb.org/signup) to obtain an API access token
 
 ## Setup
 
@@ -22,23 +22,31 @@ cd movie-search
 npm install
 ```
 
-### 3. Configure environment variables
+### 3. Get a TMDB API token
 
-Create a `.env` file in the project root:
+1. Sign up or log in at [themoviedb.org](https://www.themoviedb.org)
+2. Go to **Settings → API**
+3. Copy your **API Read Access Token** (the long Bearer token — not the short API key)
 
+### 4. Configure environment variables
+
+**macOS / Linux:**
 ```bash
 cp .env.example .env
 ```
 
-Then open `.env` and add your TMDB **Read Access Token** (Bearer token — not the API key):
+**Windows:**
+```bash
+copy .env.example .env
+```
+
+Open `.env` and replace the placeholder with your token:
 
 ```
 VITE_TMDB_TOKEN=your_tmdb_read_access_token_here
 ```
 
-To find your token: log in to TMDB → Settings → API → **API Read Access Token**.
-
-### 4. Start the development server
+### 5. Start the development server
 
 ```bash
 npm run dev
@@ -59,13 +67,15 @@ The app will be available at `http://localhost:5173`.
 
 ```
 src/
-├── App.tsx          # Root layout, router setup, and owned-movies state
-├── SearchPage.tsx   # Movie search UI
-├── OwnedPage.tsx    # Owned movies collection page
-├── MovieCard.tsx    # Movie card component
-├── types.ts         # Shared TypeScript types
-├── index.css        # Global styles and Tailwind import
-└── main.tsx         # App entry point
+├── components/
+│   └── MovieCard.tsx    # Reusable movie card component
+├── pages/
+│   ├── SearchPage.tsx   # Movie search UI
+│   └── OwnedPage.tsx    # Owned movies collection page
+├── App.tsx              # Root layout, router setup, and owned-movies state
+├── types.ts             # Shared TypeScript types
+├── index.css            # Global styles and Tailwind import
+└── main.tsx             # App entry point
 ```
 
 ## Tech Stack
