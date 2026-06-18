@@ -4,7 +4,7 @@ import MovieCard from '../components/MovieCard';
 import type { Movie, SearchResponse } from '../types';
 import type { OutletContext } from '../App';
 
-const TMDB_TOKEN = import.meta.env.VITE_TMDB_TOKEN;
+const TMDB_TOKEN = import.meta.env.TMDB_TOKEN;
 
 async function searchMovies(query: string, page: number): Promise<SearchResponse> {
   const res = await fetch(

@@ -43,7 +43,7 @@ copy .env.example .env
 Open `.env` and replace the placeholder with your token:
 
 ```
-VITE_TMDB_TOKEN=your_tmdb_read_access_token_here
+TMDB_TOKEN=your_tmdb_read_access_token_here
 ```
 
 ### 5. Start the development server
