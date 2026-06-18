@@ -4,6 +4,7 @@ import MovieCard from '../components/MovieCard';
 import type { Movie, SearchResponse } from '../types';
 import type { OutletContext } from '../App';
 
+// Vite only exposes env vars prefixed with VITE_ to the browser
 const TMDB_TOKEN = import.meta.env.VITE_TMDB_TOKEN;
 
 async function searchMovies(query: string, page: number): Promise<SearchResponse> {
