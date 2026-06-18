@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { BrowserRouter, Routes, Route, NavLink, Outlet } from 'react-router-dom';
 import SearchPage from './pages/SearchPage';
 import OwnedPage from './pages/OwnedPage';
@@ -13,10 +13,7 @@ export interface OutletContext {
 }
 
 function Layout() {
-  const [owned, setOwned] = useState<Map<number, Movie>>(() => {
-    const stored = localStorage.getItem('owned-movies');
-    return stored ? new Map(JSON.parse(stored)) : new Map();
-  });
+  const [owned, setOwned] = useState<Map<number, Movie>>(new Map());
 
   function toggleOwned(movie: Movie) {
     setOwned((prev) => {
@@ -29,10 +26,6 @@ function Layout() {
       return next;
     });
   }
-
-  useEffect(() => {
-    localStorage.setItem('owned-movies', JSON.stringify(Array.from(owned.entries())));
-  }, [owned]);
 
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `text-sm font-medium pb-1 border-b-2 transition-colors ${
