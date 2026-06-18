@@ -79,7 +79,23 @@ export default function SearchPage() {
 
       {error && <p className="text-red-500 text-sm mb-6">{error}</p>}
 
-      {results.length > 0 && (
+      {loading && (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <div key={i} className="rounded-xl overflow-hidden border border-gray-200">
+              <div className="w-full aspect-[2/3] bg-gray-200 animate-pulse" />
+              <div className="p-4 bg-gray-100 flex flex-col gap-2">
+                <div className="h-3 bg-gray-200 rounded animate-pulse w-3/4" />
+                <div className="h-3 bg-gray-200 rounded animate-pulse w-1/4" />
+                <div className="h-3 bg-gray-200 rounded animate-pulse w-full mt-1" />
+                <div className="h-3 bg-gray-200 rounded animate-pulse w-5/6" />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {!loading && results.length > 0 && (
         <section>
           <h2 className="text-lg font-semibold text-gray-700 mb-4">Results</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
