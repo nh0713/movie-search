@@ -1,16 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, NavLink, Outlet } from 'react-router-dom';
 import SearchPage from './pages/SearchPage';
 import OwnedPage from './pages/OwnedPage';
 import type { Movie } from './types';
 
+// Shared state passed from Layout to child routes via <Outlet>.
+// Child routes access this with useOutletContext<OutletContext>() — see SearchPage and OwnedPage.
+// Add new shared state here if a future page needs it.
 export interface OutletContext {
   owned: Map<number, Movie>;
   toggleOwned: (movie: Movie) => void;
 }
 
 function Layout() {
-  const [owned, setOwned] = useState<Map<number, Movie>>(new Map());
+  const [owned, setOwned] = useState<Map<number, Movie>>(() => {
+    const stored = localStorage.getItem('owned-movies');
+    return stored ? new Map(JSON.parse(stored)) : new Map();
+  });
 
   function toggleOwned(movie: Movie) {
     setOwned((prev) => {
@@ -23,6 +29,10 @@ function Layout() {
       return next;
     });
   }
+
+  useEffect(() => {
+    localStorage.setItem('owned-movies', JSON.stringify(Array.from(owned.entries())));
+  }, [owned]);
 
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `text-sm font-medium pb-1 border-b-2 transition-colors ${
@@ -41,6 +51,7 @@ function Layout() {
             </NavLink>
           </nav>
         </div>
+        {/* Pass shared state to child routes — shape must match OutletContext above */}
         <Outlet context={{ owned, toggleOwned } satisfies OutletContext} />
       </div>
     </div>
